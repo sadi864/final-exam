@@ -1,0 +1,76 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href="one.html">Problem 1</a> |
+        <a href="two.html">Problem 2</a> |
+        <a href="three.html">Problem 3</a> |
+        <a href="four.html">Problem 4</a> |
+        <a href="five.html">Problem 5</a> |
+        <a href="six.html">Problem 6</a> |
+        <a href="seven.html">Problem 7</a> |
+        <a href="eight.html">Problem 8</a> |
+        <a href="vue/index.html" target="_blank">Problem 9</a>
+    </nav> 
+    <br><br>
+    <h1>Problem 2</h1><br>
+    <div id="table-container">
+        <table border="1" id="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Table rows will be dynamically populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Fetch data from the API URL
+        fetch('https://codeandcareer.com/assignments/api/api.php',{mode:"no-cors"})
+        .then(function(response){
+            console.log(response.ok);
+        }).then(data => {
+                const tableBody = document.getElementById('table-body');
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+
+                    // Create cells for each column
+                    const idCell = document.createElement('td');
+                    idCell.textContent = item.id;
+                    row.appendChild(idCell);
+
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = item.name;
+                    row.appendChild(nameCell);
+
+                    const mobileCell = document.createElement('td');
+                    mobileCell.textContent = item.mobile;
+                    row.appendChild(mobileCell);
+
+                    const emailCell = document.createElement('td');
+                    emailCell.textContent = item.email;
+                    row.appendChild(emailCell);
+
+                    // Append the row to the table body
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+</body>
+</html>
